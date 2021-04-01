@@ -17,6 +17,4 @@ public class Notes
 
     @Lob
     String recipeNotes;
-
-
 }

@@ -13,7 +13,7 @@ public class Ingredient
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     private BigDecimal amount;
-    private String descripton;
+    private String description;
 
     @ManyToOne
     private Recipe recipe;
@@ -23,10 +23,10 @@ public class Ingredient
 
     public Ingredient(){}
 
-    public Ingredient(String descripiton, BigDecimal amount, UnitOfMeasure unitOfMeasure, Recipe recipe) {
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure, Recipe recipe) {
         this.id = id;
         this.amount = amount;
-        this.descripton = descripiton;
+        this.description = description;
         this.unitOfMeasure = unitOfMeasure;
         this.recipe = recipe;
     }

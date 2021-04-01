@@ -9,7 +9,7 @@ import java.util.Set;
 public interface RecipeService {
     Set<Recipe> getRecipes();
 
-    Recipe findByID(Long l);
+    Recipe findById(Long l);
 
     @Transactional
     RecipeCommand saveRecipeCommand(RecipeCommand command);

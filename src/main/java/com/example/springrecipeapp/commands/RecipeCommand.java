@@ -1,5 +1,6 @@
 package com.example.springrecipeapp.commands;
 
+
 import com.example.springrecipeapp.domains.Difficulty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,11 +9,13 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@Setter
+/**
+ * Created by jt on 6/21/17.
+ */
 @Getter
+@Setter
 @NoArgsConstructor
-public class RecipeCommand
-{
+public class RecipeCommand {
     private Long id;
     private String description;
     private Integer prepTime;

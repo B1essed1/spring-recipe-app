@@ -2,19 +2,24 @@ package com.example.springrecipeapp.converters;
 
 import com.example.springrecipeapp.commands.RecipeCommand;
 import com.example.springrecipeapp.domains.Recipe;
-import org.springframework.lang.Nullable;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
+/**
+ * Created by jt on 6/21/17.
+ */
 @Component
 public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
-    private final CategoryCommandToCategory categoryConvertor;
+
+    private final CategoryCommandToCategory categoryConveter;
     private final IngredientCommandToIngredient ingredientConverter;
     private final NotesCommandToNotes notesConverter;
 
-    public RecipeCommandToRecipe(CategoryCommandToCategory categoryConvertor, IngredientCommandToIngredient ingredientConverter, NotesCommandToNotes notesConverter) {
-        this.categoryConvertor = categoryConvertor;
+    public RecipeCommandToRecipe(CategoryCommandToCategory categoryConveter, IngredientCommandToIngredient ingredientConverter,
+                                 NotesCommandToNotes notesConverter) {
+        this.categoryConveter = categoryConveter;
         this.ingredientConverter = ingredientConverter;
         this.notesConverter = notesConverter;
     }
@@ -22,10 +27,10 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
     @Synchronized
     @Nullable
     @Override
-    public Recipe convert(RecipeCommand source)
-    {
-        if (source== null)
-        return null;
+    public Recipe convert(RecipeCommand source) {
+        if (source == null) {
+            return null;
+        }
 
         final Recipe recipe = new Recipe();
         recipe.setId(source.getId());
@@ -41,7 +46,7 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
 
         if (source.getCategories() != null && source.getCategories().size() > 0){
             source.getCategories()
-                    .forEach( category -> recipe.getCategories().add(categoryConvertor.convert(category)));
+                    .forEach( category -> recipe.getCategories().add(categoryConveter.convert(category)));
         }
 
         if (source.getIngredients() != null && source.getIngredients().size() > 0){
@@ -51,5 +56,4 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
 
         return recipe;
     }
-
 }

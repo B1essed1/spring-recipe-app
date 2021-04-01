@@ -36,7 +36,7 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
-    public  Recipe findByID(Long l)
+    public  Recipe findById(Long l)
     {
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
         if (recipeOptional.isEmpty())
@@ -49,8 +49,12 @@ public class RecipeServiceImpl implements RecipeService{
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
         Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
 
+        assert detachedRecipe != null;
         Recipe savedRecipe = recipeRepository.save(detachedRecipe);
         log.debug("Saved RecipeId:" + savedRecipe.getId());
+        System.out.println( );
         return recipeToRecipeCommand.convert(savedRecipe);
     }
+
+
 }
