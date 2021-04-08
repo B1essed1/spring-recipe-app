@@ -12,7 +12,7 @@ public class Notes
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @OneToOne
+    @OneToOne()
     Recipe recipe;
 
     @Lob
