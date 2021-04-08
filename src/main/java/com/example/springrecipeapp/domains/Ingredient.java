@@ -1,7 +1,6 @@
 package com.example.springrecipeapp.domains;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -21,18 +20,22 @@ public class Ingredient
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure unitOfMeasure;
 
-    public Ingredient(){}
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom) {
+        this.description = description;
+        this.amount = amount;
+        this.unitOfMeasure = uom;
+    }
 
-    public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure, Recipe recipe) {
-        this.id = id;
+
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure, Recipe recipe)
+    {
         this.amount = amount;
         this.description = description;
         this.unitOfMeasure = unitOfMeasure;
         this.recipe = recipe;
     }
 
-    protected boolean canEqual(final Object other) {
-        return other instanceof Ingredient;
-    }
+    public Ingredient() {
 
+    }
 }
